@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kebun Raya Bogor - Explore Bogor</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { font-family: 'Inter', sans-serif; background: white; }
+    body { animation: fadeIn 0.5s ease; }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+    body.fade-out { animation: fadeOut 0.35s ease forwards; }
+    @keyframes fadeOut { from { opacity:1; transform:translateY(0); } to { opacity:0; transform:translateY(-10px); } }
+
+    .page-wrap { display:flex; gap:24px; padding:16px 32px 48px; max-width:1400px; margin:0 auto; }
+    .col-left { flex:1; min-width:0; }
+    .col-right { width:340px; flex-shrink:0; display:flex; flex-direction:column; gap:16px; }
+
+    .hero-img-wrap { position:relative; border-radius:12px; overflow:hidden; height:340px; width:100%; }
+    .hero-img-wrap img { width:100%; height:100%; object-fit:cover; display:block; }
+    .hero-img-overlay { position:absolute; bottom:0; left:0; right:0; background:rgba(20,60,40,0.55); padding:16px 20px 20px; }
+
+    .stats-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:14px; }
+    .stat-item { display:flex; align-items:center; gap:10px; background:rgba(217,217,217,0.45); border-radius:10px; padding:10px 12px; }
+
+    .daya-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:12px; width:100%; }
+    .daya-card { border-radius:12px; border:2.5px solid #9e9e9e; overflow:hidden; background:white; box-shadow:0 1px 4px rgba(0,0,0,0.08); }
+    .daya-card img { width:100%; height:110px; object-fit:cover; display:block; }
+    .daya-body { padding:8px 10px 10px; }
+
+    .back-btn { display:inline-flex; align-items:center; gap:8px; background:#40916C; color:white; font-size:13px; font-weight:600; padding:10px 20px; border-radius:12px; text-decoration:none; margin-top:22px; }
+    .back-btn:hover { background:#2d6a4f; }
+
+    @media (max-width:1024px) {
+      .page-wrap { flex-direction:column; padding:14px 20px 36px; }
+      .col-right { width:100%; }
+      .daya-grid { grid-template-columns:repeat(2,1fr); }
+      .stats-grid { grid-template-columns:repeat(2,1fr); }
+      .hero-img-wrap { height:260px; }
+    }
+    @media (max-width:600px) {
+      .page-wrap { padding:10px 12px 28px; }
+      .daya-grid { grid-template-columns:repeat(2,1fr); gap:8px; }
+      .stats-grid { grid-template-columns:repeat(2,1fr); gap:8px; }
+      .hero-img-wrap { height:200px; }
+      .back-btn { display:flex; width:fit-content; }
+      .nav-links,.nav-search { display:none !important; }
+    }
+
+    /* Hamburger menu */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 3px;
+      background: #333;
+      border-radius: 3px;
+    }
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(27,67,50,0.97);
+      z-index: 200;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: white;
+      font-size: 22px;
+      font-weight: 600;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+    }
+    .mobile-menu .close-btn {
+      position: absolute;
+      top: 24px; right: 24px;
+      color: white; font-size: 32px;
+      cursor: pointer; background: none; border: none; line-height: 1;
+    }
+    /* Tombol kembali selalu di bawah konten kiri, tidak mengambang */
+    .back-btn-wrap {
+      width: 100%;
+      margin-top: 22px;
+      padding-bottom: 8px;
+    }
+    @media (max-width: 768px) {
+      .hamburger { display: flex; }
+      .nav-links, .nav-search { display: none !important; }
+    }
+
+  </style>
+</head>
+<body>
+  <nav style="display:flex;align-items:center;padding:16px 32px;gap:20px;border-bottom:1px solid #f0f0f0;background:white;position:sticky;top:0;z-index:50;">
+    <div style="display:flex;align-items:center;gap:10px;margin-right:16px;">
+      <img src="plane-01 1.png" alt="Logo" style="width:48px;height:48px;border-radius:50%;object-fit:cover;" onerror="this.style.display='none'" />
+      <div style="font-family:'Inter',sans-serif;font-weight:700;font-size:18px;line-height:1.2;">EXPLORE<br/>BOGOR</div>
+    </div>
+    <div class="nav-links" style="display:flex;gap:26px;font-family:'Inter',sans-serif;">
+      <a href="#" onclick="navigateTo('index.html');return false;" style="color:black;font-weight:600;font-size:16px;text-decoration:none;">Home</a>
+      <a href="#" style="color:black;font-weight:600;font-size:16px;text-decoration:none;border-bottom:2px solid black;padding-bottom:2px;">Destination</a>
+      <a href="#" style="color:black;font-weight:600;font-size:16px;text-decoration:none;">About Us</a>
+      <a href="#" style="color:black;font-weight:600;font-size:16px;text-decoration:none;">Contact</a>
+    </div>
+    <div class="nav-search" style="margin-left:auto;position:relative;">
+      <input type="text" placeholder="Search destination..." style="background:white;border-radius:40px;padding:10px 42px 10px 20px;width:280px;font-size:14px;font-family:'Poppins',sans-serif;color:#9ca3af;border:1px solid #d1d5db;outline:none;" />
+      <svg style="position:absolute;right:14px;top:12px;width:17px;height:17px;" fill="none" stroke="#9ca3af" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    </div>
+
+      <!-- Hamburger untuk mobile (halaman detail - hitam) -->
+      <div class="hamburger" onclick="document.getElementById('mobileMenu').classList.add('open')" style="margin-left:auto;">
+        <span style="background:#333;"></span>
+        <span style="background:#333;"></span>
+        <span style="background:#333;"></span>
+      </div>
+  </nav>
+
+<!-- Mobile Menu Overlay -->
+<div id="mobileMenu" class="mobile-menu">
+  <button class="close-btn" onclick="document.getElementById('mobileMenu').classList.remove('open')">&times;</button>
+  <a href="#" onclick="document.getElementById('mobileMenu').classList.remove('open');navigateTo('index.html');return false;">Home</a>
+  <a href="#" onclick="document.getElementById('mobileMenu').classList.remove('open');navigateTo('kebun-raya.html');return false;">Kebun Raya Bogor</a>
+  <a href="#" onclick="document.getElementById('mobileMenu').classList.remove('open');navigateTo('puncak-bogor.html');return false;">Puncak Bogor</a>
+  <a href="#" onclick="document.getElementById('mobileMenu').classList.remove('open');navigateTo('curug-cilember.html');return false;">Curug Cilember</a>
+</div>
+
+  <div style="padding:10px 32px;font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#555;max-width:1400px;margin:0 auto;">
+    <a href="#" onclick="navigateTo('index.html');return false;" style="color:#555;text-decoration:none;">Home</a> &gt; <a href="#" style="color:#555;text-decoration:none;"> Destination</a> &gt; <span style="color:#888;"> Kebun Raya Bogor</span>
+  </div>
+  <div class="page-wrap">
+    <div class="col-left">
+      <div class="hero-img-wrap">
+        <!-- GANTI kebun-raya-hero.jpg -->
+        <img src="hero-kebun.png" alt="Kebun Raya Bogor" onerror="this.src='https://placehold.co/960x340/2d6a4f/white?text=Kebun+Raya+Bogor'" />
+        <div class="hero-img-overlay">
+          <span style="display:inline-flex;align-items:center;gap:5px;background:#40916C;color:white;font-size:11px;font-weight:600;padding:2px 10px;border-radius:20px;margin-bottom:6px;">Destinasi Alam 🌿</span>
+          <h1 style="color:white;font-family:'Inter',sans-serif;font-weight:600;font-size:28px;margin-bottom:4px;">Kebun Raya Bogor</h1>
+          <div style="display:flex;align-items:center;gap:5px;color:white;font-size:12px;font-weight:600;margin-bottom:6px;">
+            <svg width="13" height="13" fill="white" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+            Bogor Tengah, Kota Bogor
+          </div>
+          <p style="color:white;font-size:12px;font-weight:600;line-height:1.55;max-width:680px;">Kebun Raya Bogor adalah taman botani tertua di Indonesia yang memiliki koleksi tanaman sangat beragam dari seluruh dunia. Tempat ideal belajar, bersantai, dan menikmati keindahan alam.</p>
+        </div>
+      </div>
+      <div style="margin-top:12px;">
+        <h2 style="color:#156842;font-size:14px;font-weight:600;margin-bottom:5px;">Tentang Kebun Raya Bogor</h2>
+        <p style="font-size:12px;font-weight:600;color:#222;line-height:1.65;">Kebun Raya Bogor didirikan pada tahun 1817 oleh C.G.C. Reinwardt dan merupakan bagian dari pusat penelitian tumbuhan tropis terbesar di dunia. Dengan luas lebih dari 87 hektar, kebun raya ini menyimpan lebih dari 15.000 jenis koleksi tanaman.</p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-item"><svg width="24" height="24" fill="none" stroke="#40916C" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 2C7 2 4 7 4 7s3 0 4 2c0 0-3.5-1-5 2 0 0 4 0 5 3 0 0-3-2-5-1 0 0 2 4 6 4s6-4 6-4c-2-1-5 1-5 1s1-3 5-3c-1.5-3-5-2-5-2s1-2 4-2C18 7 20 12 20 12s-2-10-8-10z"/></svg><div><div style="color:#2E664C;font-weight:700;font-size:13px;">&gt; 15.000</div><div style="color:#555;font-size:9px;font-weight:600;">Koleksi Tanaman</div></div></div>
+        <div class="stat-item"><svg width="24" height="24" fill="none" stroke="#40916C" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><div><div style="color:#317053;font-weight:700;font-size:13px;">1817</div><div style="color:#555;font-size:9px;font-weight:600;">Tahun didirikan</div></div></div>
+        <div class="stat-item"><svg width="24" height="24" fill="none" stroke="#40916C" stroke-width="1.5" viewBox="0 0 24 24"><path d="M3 3h18v18H3zM9 3v18M15 3v18M3 9h18M3 15h18"/></svg><div><div style="color:#285C44;font-weight:700;font-size:13px;">87 Ha</div><div style="color:#555;font-size:9px;font-weight:600;">Luas area</div></div></div>
+        <div class="stat-item"><svg width="24" height="24" fill="none" stroke="#40916C" stroke-width="1.5" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg><div><div style="color:#285C44;font-weight:700;font-size:12px;">Edukasi &amp; Riset</div><div style="color:#555;font-size:9px;font-weight:600;">Fungsi Utama</div></div></div>
+      </div>
+      <h2 style="color:#244E3B;font-size:15px;font-weight:600;margin-top:16px;">Daya Tarik</h2>
+      <div class="daya-grid">
+        <div class="daya-card"><img src="taman-akuatik.png" alt="Taman Akuatik" onerror="this.src='https://placehold.co/225x110/2d6a4f/white?text=Taman+Akuatik'" /><div class="daya-body"><div style="font-weight:700;font-size:12px;margin-bottom:3px;">Taman Akuatik</div><p style="font-size:11px;color:#444;line-height:1.4;">Koleksi tanaman air yang indah dan menenangkan</p></div></div>
+        <div class="daya-card"><img src="jalur-jalan.png" alt="Jalur Pejalan" onerror="this.src='https://placehold.co/225x110/2d6a4f/white?text=Jalur+Pejalan'" /><div class="daya-body"><div style="font-weight:700;font-size:12px;margin-bottom:3px;">Jalur Pejalan kaki</div><p style="font-size:11px;color:#444;line-height:1.4;">Jalur teduh untuk berjalan santai menikmati suasana alam.</p></div></div>
+        <div class="daya-card"><img src="rumah-kaca.png" alt="Rumah Kaca" onerror="this.src='https://placehold.co/225x110/2d6a4f/white?text=Rumah+Kaca'" /><div class="daya-body"><div style="font-weight:700;font-size:12px;margin-bottom:3px;">Rumah Kaca</div><p style="font-size:11px;color:#444;line-height:1.4;">Tempat koleksi tanaman langka dan tanaman tropis</p></div></div>
+        <div class="daya-card"><img src="pohon-tua.png" alt="Pohon Tua" onerror="this.src='https://placehold.co/225x110/2d6a4f/white?text=Pohon+Tua'" /><div class="daya-body"><div style="font-weight:700;font-size:12px;margin-bottom:3px;">Pohon-pohon Tua</div><p style="font-size:11px;color:#444;line-height:1.4;">Banyak pohon besar berusia ratusan tahun yang ikonik.</p></div></div>
+      </div>
+    </div>
+    <div class="col-right">
+      <div style="background:#F3F7F4;border-radius:12px;padding:14px;">
+        <h3 style="color:#275942;font-size:13px;font-weight:600;margin-bottom:12px;display:flex;align-items:center;gap:5px;"><svg width="15" height="15" fill="#40916C" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>Informasi Praktis</h3>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <div style="display:flex;gap:9px;align-items:flex-start;"><svg width="16" height="16" fill="#555" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:1px;"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg><div><div style="font-weight:600;color:black;font-size:12px;">Lokasi</div><div style="color:#555;margin-top:1px;font-size:11px;">Jl. Ir. H. Juanda No.13,<br/>Bogor Tengah, Kota Bogor</div></div></div>
+          <div style="display:flex;gap:9px;align-items:flex-start;"><svg width="16" height="16" fill="none" stroke="#555" stroke-width="1.5" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:1px;"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><div><div style="font-weight:600;color:black;font-size:12px;">Jam Buka</div><div style="color:#555;margin-top:1px;font-size:11px;">08.00 - 16.00 WIB (Setiap Hari)</div></div></div>
+          <div style="display:flex;gap:9px;align-items:flex-start;"><svg width="16" height="16" fill="none" stroke="#555" stroke-width="1.5" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:1px;"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg><div><div style="font-weight:600;color:black;font-size:12px;">Tiket Masuk</div><div style="color:#555;margin-top:1px;font-size:11px;">Informasi harga tiket dapat dilihat di bawah</div></div></div>
+          <div style="display:flex;gap:9px;align-items:flex-start;"><svg width="16" height="16" fill="none" stroke="#555" stroke-width="1.5" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:1px;"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg><div><div style="font-weight:600;color:black;font-size:12px;">Cara kesana</div><div style="color:#555;margin-top:1px;font-size:11px;">Mobil, Motor, Angkot,<br/>Trans Pakuan (Koridor 2)</div></div></div>
+        </div>
+      </div>
+      <div style="background:#F3F7F4;border-radius:12px;padding:14px;">
+        <h3 style="color:#264B3A;font-size:13px;font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:5px;"><svg width="15" height="15" fill="#40916C" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>Lokasi di peta</h3>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.4785830584737!2d106.79529731477318!3d-6.600842395197388!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69c5528dc47fb1%3A0x59e8a1d0e8f85430!2sKebun%20Raya%20Bogor!5e0!3m2!1sid!2sid!4v1620000000000!5m2!1sid!2sid" width="100%" height="130" style="border:0;border-radius:8px;display:block;" allowfullscreen="" loading="lazy"></iframe>
+        <a href="https://www.google.com/maps/dir/?api=1&destination=Kebun+Raya+Bogor" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:5px;background:#40916C;color:white;font-size:12px;font-weight:600;padding:7px;border-radius:9px;text-decoration:none;margin-top:8px;" onmouseover="this.style.background='#2d6a4f'" onmouseout="this.style.background='#40916C'">Petunjuk arah <svg width="13" height="13" fill="white" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg></a>
+      </div>
+      <div style="background:#F3F7F4;border-radius:12px;padding:14px;">
+        <h3 style="color:#285F46;font-size:13px;font-weight:600;margin-bottom:8px;">Informasi Tiket</h3>
+        <div style="display:flex;justify-content:space-between;font-size:11px;font-weight:600;color:#326A50;margin-bottom:6px;padding:0 3px;"><span>Kategori</span><span>Harga</span></div>
+        <div style="display:flex;justify-content:space-between;background:rgba(217,217,217,0.4);padding:7px 9px;border-radius:6px;font-size:13px;font-weight:600;margin-bottom:5px;"><span>Weekday</span><span>Rp. 15.500</span></div>
+        <div style="display:flex;justify-content:space-between;background:rgba(217,217,217,0.4);padding:7px 9px;border-radius:6px;font-size:13px;font-weight:600;"><span>Weekend</span><span>Rp. 25.500</span></div>
+        <p style="color:#777;font-size:10px;font-weight:600;margin-top:8px;line-height:1.5;">Pembelian tiket dapat dilakukan di loket Kebun Raya Bogor (Pintu 1, 2, dan 3).</p>
+      </div>
+    </div>
+  </div>
+  <!-- Tombol kembali — selalu di paling bawah setelah semua konten -->
+  <div style="padding:0 32px 36px;">
+    <a href="#" onclick="navigateTo('index.html');return false;"
+      style="display:inline-flex;align-items:center;gap:8px;background:#40916C;color:white;font-size:13px;font-weight:600;padding:10px 20px;border-radius:12px;text-decoration:none;"
+      onmouseover="this.style.background='#2d6a4f'" onmouseout="this.style.background='#40916C'">
+      <svg width="16" height="16" fill="none" stroke="white" stroke-width="2.5" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16l-4-4 4-4M8 12h8"/></svg>
+      Kembali ke Daftar Destinasi
+    </a>
+  </div>
+
+  <script>
+    function navigateTo(url) { document.body.classList.add('fade-out'); setTimeout(function(){ window.location.href=url; },340); }
+  </script>
+</body>
+</html>
