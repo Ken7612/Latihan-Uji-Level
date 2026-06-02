@@ -45,7 +45,6 @@
       .nav-links,.nav-search { display:none !important; }
     }
 
-    /* Hamburger menu */
     .hamburger {
       display: none;
       flex-direction: column;
@@ -85,7 +84,7 @@
       color: white; font-size: 32px;
       cursor: pointer; background: none; border: none; line-height: 1;
     }
-    /* Tombol kembali selalu di bawah konten kiri, tidak mengambang */
+  
     .back-btn-wrap {
       width: 100%;
       margin-top: 22px;
@@ -115,7 +114,6 @@
       <svg style="position:absolute;right:14px;top:12px;width:17px;height:17px;" fill="none" stroke="#9ca3af" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
     </div>
 
-      <!-- Hamburger untuk mobile (halaman detail - hitam) -->
       <div class="hamburger" onclick="document.getElementById('mobileMenu').classList.add('open')" style="margin-left:auto;">
         <span style="background:#333;"></span>
         <span style="background:#333;"></span>
@@ -123,7 +121,6 @@
       </div>
   </nav>
 
-<!-- Mobile Menu Overlay -->
 <div id="mobileMenu" class="mobile-menu">
   <button class="close-btn" onclick="document.getElementById('mobileMenu').classList.remove('open')">&times;</button>
   <a href="#" onclick="document.getElementById('mobileMenu').classList.remove('open');navigateTo('index.html');return false;">Home</a>
@@ -138,7 +135,6 @@
   <div class="page-wrap">
     <div class="col-left">
       <div class="hero-img-wrap">
-        <!-- GANTI puncak-hero.jpg dengan foto kamu -->
         <img src="hero-puncak.png" alt="Puncak Bogor" onerror="this.src='https://placehold.co/960x340/2d6a4f/white?text=Puncak+Bogor'" />
         <div class="hero-img-overlay">
           <span style="display:inline-flex;align-items:center;gap:5px;background:#40916C;color:white;font-size:11px;font-weight:600;padding:2px 10px;border-radius:20px;margin-bottom:6px;">Destinasi Alam 🌿</span>
@@ -162,7 +158,6 @@
       </div>
       <h2 style="color:#244E3B;font-size:15px;font-weight:600;margin-top:16px;">Daya Tarik</h2>
       <div class="daya-grid">
-        <!-- GANTI foto-foto daya tarik sesuai nama file kamu -->
         <div class="daya-card"><img src="perkebunan-teh.png" alt="Kebun Teh" onerror="this.src='https://placehold.co/225x110/2d6a4f/white?text=Kebun+Teh'" /><div class="daya-body"><div style="font-weight:700;font-size:12px;margin-bottom:3px;">Perkebunan Teh Gunung Mas</div><p style="font-size:11px;color:#444;line-height:1.4;">Berjalan santai di antara hamparan teh yang hijau dan menikmati fasilitas tea walk serta berkuda.</p></div></div>
         <div class="daya-card"><img src="telaga-warna.png" alt="Telaga Warna" onerror="this.src='https://placehold.co/225x110/2d6a4f/white?text=Telaga+Warna'" /><div class="daya-body"><div style="font-weight:700;font-size:12px;margin-bottom:3px;">Telaga Warna</div><p style="font-size:11px;color:#444;line-height:1.4;">Danau eksotis tersembunyi yang warna airnya dapat berubah-ubah akibat pantulan vegetasi sekitar.</p></div></div>
         <div class="daya-card"><img src="paralayang-gantole.png" alt="Paralayang" onerror="this.src='https://placehold.co/225x110/2d6a4f/white?text=Paralayang'" /><div class="daya-body"><div style="font-weight:700;font-size:12px;margin-bottom:3px;">Paralayang Gantole</div><p style="font-size:11px;color:#444;line-height:1.4;">Menikmati keindahan lanskap Puncak dari ketinggian udara bagi para pencinta petualangan ekstrem.</p></div></div>
@@ -192,7 +187,6 @@
       </div>
     </div>
   </div>
-  <!-- Tombol kembali — selalu di paling bawah setelah semua konten -->
   <div style="padding:0 32px 36px;">
     <a href="#" onclick="navigateTo('index.html');return false;"
       style="display:inline-flex;align-items:center;gap:8px;background:#40916C;color:white;font-size:13px;font-weight:600;padding:10px 20px;border-radius:12px;text-decoration:none;"
