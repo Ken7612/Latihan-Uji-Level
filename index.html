@@ -9,14 +9,12 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* Sama persis dengan kebun-raya.html: tidak ada overflow di luar */
     html, body {
       height: 100%;
       overflow: hidden;
       font-family: 'Poppins', sans-serif;
     }
 
-    /* Animasi fade — overflow:hidden mencegah scrollbar muncul saat animasi */
     body { animation: fadeIn 0.5s ease; }
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(12px); }
@@ -30,13 +28,6 @@
       to   { opacity: 0; transform: translateY(-10px); }
     }
 
-    /*
-    ================================================
-    GANTI FOTO BACKGROUND:
-    Ganti 'hero.jpg' dengan nama file foto kamu.
-    Taruh file foto di folder yang sama dengan index.html
-    ================================================
-    */
     .hero-section {
       background-image: url('background.png');
       background-size: cover;
@@ -59,7 +50,6 @@
       flex-direction: column;
     }
 
-    /* Navbar */
     .navbar {
       display: flex;
       align-items: center;
@@ -68,7 +58,6 @@
       flex-shrink: 0;
     }
 
-    /* Hero body */
     .hero-body {
       flex: 1;
       display: flex;
@@ -90,7 +79,6 @@
       width: 480px;
     }
 
-    /* Kartu destinasi */
     .cards-wrap {
       display: flex;
       gap: 20px;
@@ -154,7 +142,6 @@
     }
     .card-btn:hover { background: #2d6a4f; }
 
-    /* Responsive tablet */
     @media (max-width: 1100px) {
       html, body { overflow: auto; }
       .hero-section { height: auto; min-height: 100vh; }
@@ -176,7 +163,6 @@
       .dest-card { width: 100%; }
     }
   
-    /* Hamburger menu */
     .hamburger {
       display: none;
       flex-direction: column;
@@ -235,10 +221,8 @@
   <div class="hero-overlay"></div>
   <div class="hero-inner">
 
-    <!-- Navbar -->
     <nav class="navbar">
       <div style="display:flex;align-items:center;gap:12px;margin-right:24px;">
-        <!-- GANTI logo.png dengan file logo kamu -->
         <img src="plane-01 2.png" alt="Logo" style="width:54px;height:54px;border-radius:50%;object-fit:cover;" onerror="this.style.display='none'" />
         <div style="color:white;font-family:'Inter',sans-serif;font-weight:700;font-size:21px;line-height:1.2;">EXPLORE<br/>BOGOR</div>
       </div>
@@ -254,7 +238,6 @@
           <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
         </svg>
       </div>
-      <!-- Hamburger untuk mobile -->
       <div class="hamburger" onclick="document.getElementById('mobileMenu').classList.add('open')">
         <span></span>
         <span></span>
@@ -262,8 +245,6 @@
       </div>
     </nav>
 
-
-<!-- Mobile Menu Overlay -->
 <div id="mobileMenu" class="mobile-menu">
   <button class="close-btn" onclick="document.getElementById('mobileMenu').classList.remove('open')">&times;</button>
   <a href="index.html">Home</a>
@@ -272,10 +253,8 @@
   <a href="curug-cilember.html">Curug Cilember</a>
 </div>
 
-    <!-- Hero body -->
     <div class="hero-body">
 
-      <!-- Kiri: teks -->
       <div class="hero-left">
         <div class="white-bar" style="width:5px;background:white;border-radius:4px;height:280px;flex-shrink:0;margin-top:4px;"></div>
         <div>
@@ -291,12 +270,9 @@
         </div>
       </div>
 
-      <!-- Kanan: 3 kartu destinasi -->
       <div class="cards-wrap">
 
-        <!-- Card 1: Kebun Raya Bogor -->
         <div class="dest-card" onclick="navigateTo('kebun-raya.html')">
-          <!-- GANTI kebun-raya.jpg dengan foto kamu -->
           <img src="kebun-raya.png" alt="Kebun Raya Bogor" onerror="this.src='https://placehold.co/230x148/2d6a4f/white?text=Kebun+Raya'" />
           <div class="card-body">
             <div style="font-family:'Poppins',sans-serif;font-weight:700;font-size:14px;margin-bottom:4px;">Kebun Raya Bogor</div>
@@ -312,9 +288,7 @@
           </div>
         </div>
 
-        <!-- Card 2: Puncak Bogor -->
         <div class="dest-card" onclick="navigateTo('puncak-bogor.html')">
-          <!-- GANTI puncak.jpg dengan foto kamu -->
           <img src="puncak.png" alt="Puncak Bogor" onerror="this.src='https://placehold.co/230x148/2d6a4f/white?text=Puncak+Bogor'" />
           <div class="card-body">
             <div style="font-family:'Poppins',sans-serif;font-weight:700;font-size:14px;margin-bottom:4px;">Puncak Bogor</div>
@@ -330,9 +304,7 @@
           </div>
         </div>
 
-        <!-- Card 3: Curug Cilember -->
         <div class="dest-card" onclick="navigateTo('curug-cilember.html')">
-          <!-- GANTI curug-cilember.jpg dengan foto kamu -->
           <img src="curug-cilember.png" alt="Curug Cilember" onerror="this.src='https://placehold.co/230x148/2d6a4f/white?text=Curug+Cilember'" />
           <div class="card-body">
             <div style="font-family:'Poppins',sans-serif;font-weight:700;font-size:14px;margin-bottom:4px;">Curug Cilember</div>
